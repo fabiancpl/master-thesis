@@ -1,0 +1,34 @@
+%!TEX root = ../thesis.tex
+%*******************************************************************************
+%*********************************** First Chapter *****************************
+%*******************************************************************************
+
+\chapter{Introduction}  %Title of the First Chapter
+\label{chapter1}
+
+\graphicspath{{Chapter1/figs/}}
+
+Machine Learning (ML) has positioned itself as a hot topic and almost as a synonym to data analysis. Nevertheless, while data analysis intend to seek through a dataset for interesting relationships and information and to effectively present them as insights \cite{TukeyJohnW.andWilk1966DataOverview}, ML comprise a set of techniques enabling computers to learn from experience and automatically to improve their efficiency \cite{Michie1968MemoLearning} without being explicitly programmed \cite{Koza1996}. In other words, when it is tedious or even impossible to detect patterns in larger and high-dimensional datasets, ML provides mechanisms to explore alternate routes to understand the data \cite{Yu2003ExploratoryAnalysis}. The ML process is automated, so the user is the responsible for checking their results and decide if these fit to the schema, mental model \cite{Grolemund2014AAnalysis}, representing the real-world phenomenon evidenced in the data. Hopefully, integrating ML to data analysis will be useful for decision-making, under some conditions as it is discussed in this work.
+
+Commonly, data analysis tasks can involved actions for search or query data elements such as trends, outliers, distributions, dependencies, correlations, among others \cite{Munzner2014VisualizationDesign}. As previously mentioned, when data is larger and high-dimensional, user can use a wide set of ML techniques for gaining understanding. From the most classical ML perspective, these techniques include supervised classification and regression algorithms, and clustering and dimensionality reduction algorithms, when it is not possible to have access to data labels or these are not representative of the underlying phenomenon.  
+
+ML techniques, being black-boxes working autonomously, have currently two big problems for the data analysis purposes: 
+
+\begin{enumerate}
+\item Lack of user feedback. To be an iterative process, training ML models can require a lot of execution time for achieving an acceptable results and, in the worst case, these can be totally useless. If the user is a domain-expert, its knowledge about the problem could greatly improve the overall performance of the ML model in less amount of time.
+\item More complex models support the accomplishment of complex tasks but generally losing interpretability. When user is involved in the ML process, model performance could not be the unique requirement to be fulfilled. While the ML objective might be to reduce error, the real-world purpose is to provide useful information \cite{Lipton2017} for decision-making by the user. The practice of handing over human judgment to the computer when user does not understand how this is working, it is similar to blindly generalize that two datasets are comparable when having the same measures of central tendency.
+\end{enumerate}
+
+To address this, two new sub-fields of research have been proposed to help users to interact and understand ML models, and by this opening the black-box: Interactive ML and Interpretable ML (also understood as Explainable AI). In this work a selection of the most noteworthy papers of these sub-fields are presented. From this state of the art analysis, some guidelines for designing better and more user-centric ML models and systems are stated. Complementary, these concepts are applied to the development of a web interactive tool for exploring high-dimensional data supported by clustering and dimensionality reduction algorithms. This tool is intended to be used by domain-expert users, so it is evaluated by two real-world use cases where users are requested to use it for insight extraction.
+
+%********************************** %First Section  **************************************
+\section{Motivation examples} %Section - 1.1 
+\label{section1.1}
+
+
+
+%********************************** %First Section  **************************************
+\section{Document structure} %Section - 1.2 
+\label{section1.2}
+
+This document is organized as follows: Chapter \ref{chapter2} shows the state of the art analysis for the Interactive ML and Interpretable ML sub-fields and the first contribution in terms of the guidelines for designing better and more user-centric ML models and systems. Chapter \ref{chapter3} describes some traditional clustering and dimensionality reduction ML techniques and discuss the current advances for interact and interpret them. Chapter \ref{chapter4} presents XXXX, a web interactive tool for exploring high-dimensional data supported by clustering and dimensionality reduction algorithms, being this the main contribution of this work seeking for an improvement of the works previously published.  Chapter \ref{chapter5} evidences the results of the evaluation of the tool based on two real-world case studies where users are requested to use it for insight extraction. Finally, Chapter \ref{chapter6} concludes the work and presents the opportunities for continuing with this line of research.

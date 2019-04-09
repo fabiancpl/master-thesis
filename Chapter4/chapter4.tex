@@ -1,0 +1,27 @@
+%!TEX root = ../thesis.tex
+%*******************************************************************************
+%****************************** Fourth Chapter **********************************
+%*******************************************************************************
+\chapter{XXXX: A Tool for Exploring and Clustering High-Dimensional Data}
+\label{chapter4}
+
+\graphicspath{{Chapter4/figs/}}
+
+%********************************** %First Section  **************************************
+\section{Research question} %Section - 4.1 
+\label{section4.1}
+
+
+
+%********************************** %Second Section  **************************************
+\section{Tool description} %Section - 4.2 
+\label{section4.2}
+
+Inter2DR is a web interactive tool designed for domain-expert users enabling them to perform exploratory analysis of high-dimensional data supported by the t-SNE DR algorithm. During an exploratory session and with non-coding, user is available for loading its own dataset, perform attribute selection and complex item filtering to subsequently embed the resulting dataset into a 2D space using t-SNE. In order to provide a mechanism to carry out cluster-oriented task sequences, as defined in \cite{*}, user can select a categorical attribute for color encoding, in the case of labeled data, but in general we provide an additional functionality to train a K-Means clustering model and use its results for color encoding. For both algorithms, t-SNE and K-Means, user is able to modify the model hyper-parameters and visualize how embedding is affected in an iterative way. Because Inter2DR is a tool for domain-expert users, we decide to include two complementary groups of idioms to validate the embedding and clustering models by observation of independent attribute distributions and instance details in a table. These components present coordinate highlighting, enabling user to quickly compare instances in the embedded space with their attribute values in the original space and vice versa. 
+
+
+TF.js workflows: https://blog.usejournal.com/machine-learning-in-the-browser-using-tensorflow-js-3e453ef2c68c
+
+You can import an existing, pre-trained model for inference. If you have an existing TensorFlow or Keras model you’ve previously trained offline, you can convert into TensorFlow.js format, and load it into the browser for inference.
+You can re-train an imported model. As in the Pac-Man demo above, you can use transfer learning to augment an existing model trained offline using a small amount of data collected in the browser using a technique called Image Retraining. This is one way to train an accurate model quickly, using only a small amount of data.
+Author models directly in browser. You can also use TensorFlow.js to define, train, and run models entirely in the browser using Javascript and a high-level layers API. If you’re familiar with Keras, the high-level layers API should feel familiar.
