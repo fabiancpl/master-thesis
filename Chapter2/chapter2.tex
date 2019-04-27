@@ -29,7 +29,7 @@ More formally, Interactive ML is a co-adaptive process, driven by the user, but 
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.7\textwidth]{InteractiveML.png}
- \caption{Block diagrams representing an Interactive ML system.}
+ \caption{Block diagram representing an Interactive ML system.}
  \label{fig:InteractiveML}
 \end{figure}
 
@@ -42,7 +42,7 @@ Next subsections describe some related concepts to tackle the Interactive ML des
 
 In general terms, DR deals with the problem of finding meaningful low-dimensional structures (compact representation) from high-dimensional data \cite{Tenenbaum2000},\cite{Roweis2000}. For \textbf{sample review}, this is a valuable technique for representing high-dimensional data in principally two dimensions to validate the data distribution. Some algorithms for DR are Principal Component Analysis (PCA) \cite{PCA}, Self-Organized Maps (SOM) \cite{Kohonen1982Self-organizedMaps}, t-Stochastic Neighborhood Embedding (t-SNE) \cite{VanDerMaaten2008}, and Uniform Manifold Approximation and Projection (UMAP) \cite{McInnes2018}.
 
-DR can be used to achieve cluster-oriented task sequences such as verify clusters, name clusters and match cluster and classes \cite{Brehmer2014VisualizingSequences}. In this sense, DR and Clustering algorithms have been successfully combined for assist analysts in performing this kind of user tasks \cite{Wenskovitch2018}. Nevertheless, many challenges and opportunities need to be addressed. In addition, it is important to note that DR and Clustering algorithms are not only relevant for providing \textbf{sample review}, as in \cite{Wenskovitch2017}, where a \textbf{feedback assignment} mechanism based on observation-level interaction is enabled for improving the cluster computation in an iterative way. 
+DR can be used to achieve cluster-oriented task sequences such as verify clusters, name clusters and match cluster and classes \cite{Brehmer2014VisualizingSequences}. In this sense, DR and Clustering algorithms have been successfully combined for assist analysts in performing this kind of user tasks \cite{Wenskovitch2018}. Nevertheless, many challenges and opportunities need to be addressed. In addition, it is important to note that DR and Clustering algorithms are not only relevant for providing \textbf{sample review} as stated in \cite{Wenskovitch2017}, where a \textbf{feedback assignment} mechanism based on observation-level interaction is enabled for improving the cluster computation in an iterative way. 
 
 Since using DR and Clustering algorithms for interactive EDA is the main focus of this work, this subsection is extended and better contextualized in Chapter \ref{chapter3}. 
 
@@ -73,7 +73,7 @@ It is also important to highlight some works focused on implement systems that l
 \section{Interpretable ML} %Section - 2.2 
 \label{section2.2}
 
-Interpretability is defined as the ability to explain or to present in understandable terms to a human \cite{Doshi-Velez2017c}. This definition by itself leaves more questions open than it solves and the decision behind delivering ML interpretability to users must be careful studied. Figure \ref{fig:interpretableML}, presents a condensed synthesis regarding to design aspects for delivering interpretability which are highly related to the context, the user, the data and the model. These aspects are grouped in six questions to be asked during the design process:
+Interpretability is defined as the ability to explain or to present in understandable terms to a human \cite{Doshi-Velez2017c}. This definition by itself leaves more questions open than it solves and the decision behind delivering ML interpretability to users must be careful studied. Figure \ref{fig:interpretableML}, presents a condensed synthesis regarding to design aspects for delivering interpretability which are highly related to context, users, data and models \cite{Hohman2018},\cite{Doshi-Velez2017c},\cite{Lipton2017}. These aspects are grouped in six questions to be asked during the design process:
 
 \begin{itemize}
     \item Why do you need to produce interpretability? Should the system be in the ability to generate trust about predictions? Does it protect sensitive information in the data?
@@ -87,27 +87,24 @@ Interpretability is defined as the ability to explain or to present in understan
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.9\textwidth]{InterpretableML.png}
- \caption{Aspects to consider when designing Interpretable ML systems \cite{Hohman2018},\cite{Doshi-Velez2017c},\cite{Lipton2017}.}
+ \caption{Aspects to consider when designing Interpretable ML systems.}
  \label{fig:interpretableML}
 \end{figure}
 
-, interpretability is necessary and appropriate when there is an incompleteness in the problem formalization and can be avoided in these two scenarios: \textit{``(1) there are no significant consequences for unacceptable results or (2) the problem is sufficiently well-studied and validated in real applications that we trust the system’s decision, even if the system is not perfect''}.
-
-
-Interpretable ML is not an isolated concept from Interactive ML, meaning that explanations could be produced in an interactive way to user considering the four interaction elements described in previous sections. Complementary, designers must not forget the system is constrained by an user task and users are those who are in the power to determine if the task was effectively fulfilled. User evaluations for interactivity and interpretability components, as in any HCI study, must be considered.
+Delivering interpretability implies opening the black-box and sometimes it could not be necessary and appropriate to do it, principally when there are no significant consequences for unacceptable results or the problem is sufficiently well-studied and validated in real applications that user trust the system’s decision, even if this is not perfect \cite{Doshi-Velez2017c}.
 
 \subsection{Frameworks for Interpretability}
 
-Ribeiro et al. \cite{Ribeiro2016} develop LIME. Based on local interpretability, this framework is able to explain predictions by learning an interpretable model locally around the prediction. The authors show the potential of the framework in applications based on tabular, image and text data. Complementary, LIME is extended by Teso and Kersting \cite{Teso2018WhyUsers} to explain the query produced in an AL scenario. Local explanations are the base of works focused on produce global interpretation as the case of the proposal by Yang et al. \cite{Yang2018GlobalPartitioning}. From contribution matrix representing the feature importance for every single data sample, product of frameworks such as LIME, a binary tree is learned to explicitly represent the most important decision rules that are implicitly contained in the black-box model. 
+Some relatively basic techniques for interpret ML models are \cite{Becker2018MachineExplainability}: Permutation importance, for determining which attribute produces the highest performance decrease, and Partial dependence plots, for visualizing influence direction and shape when varying an attribute value.
 
-In Section 1, we mention that Deep Learning models have the disadvantage of being the least interpretable due to their large number of parameters. Contributions in this field have been achieved by producing interpretation of the features learned at each layer of a Neural Network, as demonstrated by Yosinski et al. \cite{Yosinski2015a} and Olah et al. \cite{Olah2018TheInterpretability}. A more extensive literature review about interpretability in Deep Learning can be found in Zhang and Zhu \cite{Zhang2018VisualSurvey}.
+A more sophisticated technique is LIME \cite{Ribeiro2016}, Local Interpretable Model-Agnostic Explanations, where a specific prediction is explained by learning an interpretable model locally. The result of LIME is a probability for each attribute value of belonging to the prediction class. In addition, the authors show the potential of the framework in applications based on tabular, image and text data. LIME is extended by SHAP \cite{Lundberg2017APredictions}, including an additional component based on the identification of a new class of additive attribute importance measures. LIME is also extended in \cite{Teso2018} and \cite{Phillips2018InterpretableLearning} to explain the query produced in an AL scenario. Local explanations are the base of works focused on produce global interpretation as proposed in \cite{Yang2018}. From contribution matrix representing the attribute importance for every data item, a binary tree is learned to explicitly represent the most important decision rules that are implicitly contained in the black-box model. 
+
+Black-box Deep Learning models have the disadvantage of being the least interpretable because their large number of parameters as measure of complexity. Contributions in this field have been achieved by producing interpretation of the features learned at each layer of a Neural Network \cite{Yosinski2015a},\cite{Olah2018}. A more extensive literature review about interpretability in Deep Learning can be found in \cite{Zhang2018}.
 
 %********************************** %Third Section  **************************************
 \section{The link between both worlds} %Section - 2.3
 \label{section2.3}
 
-In some scenarios, mechanisms to \textbf{sample review} and \textbf{feedback assignment} (e.g. user labeling or parameter tuning) may not be enough to successfully fulfill the user task. We argue \textbf{model inspection} implies opening the black-box model and presenting it to user in an interpretable or explainable way. In other words, \textbf{an Interactive ML system is not necessarily interpretable in terms of what model is learning and, in the opposite case, an Interpretable ML system could not involve all enough elements of interaction to perform the task in an usable and efficient way}.
+Interactive ML and Interpretable ML in the most of cases previously described has been tackled as isolated concepts. In some scenarios, mechanisms for \textbf{sample review} and \textbf{feedback assignment} (e.g. labeling or parameter tuning) may not be enough to successfully fulfill the user task. \textbf{Model inspection} implies opening the black-box and presenting it to user in an interpretable way and model interpretation indicates the ability to provide explanations about their inner working which could help users to better understand their results \cite{Doshi-Velez2017c}. This extension could support the \textbf{task overview} interface element because, as stated in \cite{Doshi-Velez2017c}, \cite{Lipton2017}, model interpretation is used to achieve other important requirements in user-centric ML systems such as trust, unbiasedness, privacy, reliability, robustness, causality, transferability, informativeness and usability.
 
-\textbf{Model inspection} interaction element can be complemented by producing different kinds of interpretations about the model continuously refined thanks to \textbf{feedback assignment}. Model interpretation indicates the ability to provide explanations about their inner working which could help users understand their results \cite{Doshi-Velez2017c}, thereby these additional components could support the \textbf{task overview} interface element because, as Doshi-Velez and Kim \cite{Doshi-Velez2017c} and Lipton \cite{Lipton2017TheInterpretability} explain, model interpretation is used to achieve other important requirements in user-centric ML systems such as trust, unbiasedness, privacy, reliability, robustness, causality, transferability, informativeness and usability. More details are discussed in Section \ref{sec:interpretableml}.
-
-A more extensive revision about families of algorithms and application domains in the context of integrating ML and VA can be found in Endert et al. \cite{Endert2017b}.
+In other words, \textbf{an Interactive ML system is not necessarily interpretable in terms of what model is learning and, in the opposite case, an Interpretable ML system could not involve all enough elements of interaction to perform the task in an usable and efficient way}. Designers must not forget the system is constrained by an user task and users are the ones who have the power to determine if the task was effectively fulfilled. User evaluation for interactivity and interpretability, as in any HCI study, must be considered.

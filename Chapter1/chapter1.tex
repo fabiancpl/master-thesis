@@ -21,7 +21,7 @@ ML techniques, being black-boxes working autonomously, have currently two big pr
 \item More sophisticated models support the accomplishment of complex tasks but generally losing interpretability. When user is involved in the ML process, model performance could not be the unique requirement to be fulfilled. While the ML objective might be to reduce error, the real-world purpose is to provide useful information \cite{Lipton2017} for decision-making by the user. The practice of handing over human judgment to the computer when user does not understand how this is working, it is similar to blindly accept that two datasets are comparable when having the same measures of central tendency.
 \end{enumerate}
 
-To address this, two new sub-fields of research have been proposed to help users to better interact and understand ML models, and by this opening the black-box: Interactive ML and Interpretable ML (also known as Explainable AI). In this work, a selection of the most noteworthy papers of these sub-fields are presented and some guidelines for designing better and more user-centric ML systems are derived. Subsequently, this analysis focuses on Visual Analytics (VA) tools for exploring high-dimensional data that use DR or Clustering algorithms.
+To address this, two new sub-fields of research have been proposed to help users to better interact and understand ML models, and by this opening the black-box: Interactive ML and Interpretable ML (also known as Explainable Artificial Intelligence). In this work, a selection of the most noteworthy papers of these sub-fields are presented and some guidelines for designing better and more user-centric ML systems are derived. Subsequently, this analysis focuses on Visual Analytics (VA) tools for exploring high-dimensional data that use DR and Clustering algorithms.
 
 From the previous basis, a web interactive tool for exploring high-dimensional tabular data is developed extending the concept that ML models can be used for gaining data understanding as long as the user is able to feed them by interactions and interpret their inner workings and results. For supporting the exploration, two implementations \cite{Pezzotti2018LinearWeb},\cite{Asensio2018Ml-kmeans} of the t-SNE and K-Means algorithms running in the browser are integrated. Opportunities in a browser-based environment include shareability, interactivity and on-device computation \cite{Smilkov2019TensorFlow.js:Beyond}. This tool is intended to be used by domain-expert users where these are able to interactively load their own dataset, perform attribute selection and instance filtering, train the available models, change their hyper-parameters and validate their results. The tool evaluation is performed by two real-world use cases where domain-expert users are asked to explore the data by cluster-oriented DR task sequences \cite{Brehmer2014VisualizingSequences} and extract insights.
 
@@ -29,21 +29,21 @@ From the previous basis, a web interactive tool for exploring high-dimensional t
 \section{Motivation examples} %Section - 1.1 
 \label{section1.1}
 
-No extending the discussion about different statistical or VA alternatives for analyzing high-dimensional data, two idioms for visualizing it are parallel coordinates and scatter plot matrix. Both idioms are useful for determine correlations between attribute pairs and identify outliers but, particularly the parallel coordinates, presents a limitation when analyzing non-neighbor attributes in terms of their distribution among the x-axis. These idioms can be extended by including user interaction for linked highlighting across sub-views, for the case of the scatter plot matrix, or attribute reordering, seeking to reduce the parallel coordinates limitation previously presented.
+No extending the discussion about different statistical or VA alternatives for analyzing high-dimensional data, two idioms for visualizing it are parallel coordinates plot and scatter plot matrix. Both idioms are useful for determine correlations between attribute pairs and identify outliers but, particularly the parallel coordinates, presents a limitation when analyzing non-neighbor attributes in terms of their distribution among the x-axis. These idioms can be extended by including user interaction for coordinated highlighting across sub-views, for the case of the scatter plot matrix, or attribute reordering, seeking to reduce the parallel coordinates plot limitation previously presented.
 
-Figures \ref{fig:iris-parallel} and \ref{fig:iris-scatterplot} shows these idioms applied to one the most widespread datasets in ML community, the Fisher's Iris dataset \cite{FisherIris} which has 150 items, 4 attributes and one class representing the iris species. In both idioms, the main insight from this dataset consisting of the class linear separability in two of the attributes (PetalLengthCm, PetalWidthCm) can be easily appreciated.
+Figures \ref{fig:iris-parallel} and \ref{fig:iris-scatterplot} shows these idioms applied to one the most widespread datasets in ML community, the Fisher's Iris dataset \cite{FisherIris}. This dataset has 150 items and 5 attributes, one of them representing the iris species. In both idioms, the main insight from this dataset consisting of the class linear separability in two of the attributes (PetalLengthCm, PetalWidthCm) can be easily appreciated.
 
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.7\textwidth]{iris-parallel.png}
- \caption{Parallel coordinates for the Iris dataset \cite{FisherIris}}
+ \caption{Parallel coordinates for the Iris dataset.}
  \label{fig:iris-parallel}
 \end{figure}
 
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.9\textwidth]{iris-scatterplot.png}
- \caption{Scatter plot matrix for the Iris dataset \cite{FisherIris}}
+ \caption{Scatter plot matrix for the Iris dataset.}
  \label{fig:iris-scatterplot}
 \end{figure}
 
@@ -52,15 +52,50 @@ In the real-world, there are larger and more complex datasets than the Iris havi
 \subsection{The FIFA 19 Complete Player dataset} %Subsection - 1.1.1 
 \label{subsection1.1.1}
 
-FIFA
+The FIFA dataset is currently one of the most popular datasets in Kaggle\footnote{https://www.kaggle.com/datasets (accessed on April 21th, 2019)}. It contains more than 18.000 player records of the popular video game, information representing the real state of players belonging to a wide variety of soccer clubs around the world. For each player there are 89 categorical and ordered attributes including age, nationality, overall scoring, potential, club, value, wage, preferred foot, international reputation, weak foot, skill moves, work rate, among many others. Cluster-oriented DR task sequences \cite{Brehmer2014VisualizingSequences}, in the context of this dataset, can be mapped from the need for identifying players with similar physical and game attributes and subsequently determine, for instance, the best conditions for training, trading options or match planning.
+
+After validate data quality and transform attributes, a DR model is trained for producing an embedding that enables the identification of clusters of similar players. In addition, the position categorical attribute is used to encode the color in the scatter plot which in turn uses the embedding dimensions to encode the x and y-axes. The result is shown in Figure \ref{fig:fifa-tsne}. From this perspective, some analysis questions can be asked: 
+\begin{itemize}
+\item Do clusters visually identified match with the attribute used for color encoding?
+\item Is it possible characterize the emerging clusters in terms of attributes from the original space?
+\item If goalkeepers (orange cluster) are excluded from the analysis, will the embedding produce a different result?
+\item If physical attributes like height and weight are also excluded, is the player distribution in the embedding affected?  
+\end{itemize}
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.7\textwidth]{fifa-tsne.png}
+ \caption{DR embedding for the FIFA dataset using the t-SNE algorithm.}
+ \label{fig:fifa-tsne}
+\end{figure}
+
+The first question could have a positive answer by performing model selection, which is addressed in Section \ref{section3.1}. Subsequent questions can be asked by additional experimentation where dataset is filtered or reduced and additional models are retrained in a iterative way. It is also required to be able for analyzing items in specific regions of the embedding (scatter plot). If the user is a ML-expert, they will not have problems to perform these analysis in the framework of their preference, otherwise, a tool for interact and interpret the model space and results can be valuable. Some state of the art proposals are analyzed in Section \ref{section3.3}. Chapter \ref{chapter4} is focused on describing an improved proposal of web interactive tool for answering these kind of EDA but also ML questions.
 
 \subsection{The SALURBAL dataset} %Subsection - 1.1.2 
 \label{subsection1.1.2}
 
-SALURBAL
+SALURBAL is a five-year project aimed to study how urban environments and urban policies impact the health of city residents throughout Latin America \footnote{https://drexel.edu/lac/salurbal/overview/ (accessed on April 22th, 2019)}. For this purpose, datasets of Latin American cities and sub-cities containing urban form, landscape, street design and transportation metrics has been collected to subsequently determine which patterns emerge as mechanism for supporting the decision-making by domain-experts in fields like transportation and urban health. The sub-cities dataset has 1.438 items and 83 attributes, where all attributes are sequential except for name of the sub-city, type of sub-city, city, country, presence of BRT, subway and aerial tram being categorical.
 
-%********************************** %First Section  **************************************
+After validate data quality and transform attributes, a Clustering model is trained for producing groups of similar cities that can be analyzed more easily. The model produces a cluster membership but not much explanations about how these have been built. An alternative for gaining understanding is to observe the distribution of the original-space attributes, but since there are many of them, using DR for visualizing the cluster distribution and validating their separability or overlapping is a reasonable choice. It's like having two points of view. The result is shown in Figure \ref{fig:salurbal-kmeans-tsne}. Nevertheless, similar to the FIFA dataset, important questions need to be addressed: 
+
+\begin{itemize}
+\item Do clusters match with the 2-dimensional distribution from the DR embedding?
+\item Is it possible characterize the emerging clusters in terms of attributes from the original space?
+\item Why the green cluster have only two sub-cities? Do they correspond to outliers having to be removed for the analysis? Does 4 clusters not represent a convenient data grouping?
+\item These models are obtained including all sub-cities metrics for training. Would more make sense if models for Clustering and DR are trained by groups of attributes like urban landscape and street design?
+\end{itemize}
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.7\textwidth]{salurbal-kmeans-tsne.png}
+ \caption{Clustering + DR embedding for the SALURBAL dataset using the K-Means and t-SNE algorithms.}
+ \label{fig:salurbal-kmeans-tsne}
+\end{figure}
+
+As stated in previous subsection, Chapters \ref{chapter3} and \ref{chapter4} are focused on describing current tools and an improved proposal of web interactive tool for answering these kind of EDA but also ML questions. 
+
+    %********************************** %Second Section  **************************************
 \section{Document structure} %Section - 1.2 
 \label{section1.2}
 
-This document is organized as follows: Chapter \ref{chapter2} shows the state of the art analysis for the Interactive ML and Interpretable ML sub-fields and the first contribution in terms of the guidelines for designing better and more user-centric ML systems. Chapter \ref{chapter3} describes some traditional DR and Clustering algorithms and discuss the current advances for interact and interpret them. Chapter \ref{chapter4} presents the web interactive tool for exploring high-dimensional tabular data supported by DR and Clustering models. Chapter \ref{chapter5} evidences the results of the tool evaluation based on two real-world case studies. Finally, Chapter \ref{chapter6} concludes the work and presents the challenges and opportunities for the future.
+This document is organized as follows: Chapter \ref{chapter2} shows the state of the art analysis for the Interactive ML and Interpretable ML sub-fields and the first contribution in terms of guidelines for designing better and more user-centric ML systems. Chapter \ref{chapter3} describes some traditional DR and Clustering algorithms and discuss the current advances for interact and interpret them. Chapter \ref{chapter4} presents the web interactive tool for exploring high-dimensional tabular data supported by DR and Clustering models. Chapter \ref{chapter5} evidences the results of the tool evaluation based on two real-world case studies. Finally, Chapter \ref{chapter6} concludes the work and presents the challenges and opportunities for the future.
