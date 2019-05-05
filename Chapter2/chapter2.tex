@@ -3,15 +3,14 @@
 %****************************** Second Chapter *********************************
 %*******************************************************************************
 
-\chapter{Interactive and Interpretable ML}
+\chapter{Designing User-Centric ML Systems}
 \label{chapter2}
 
 \graphicspath{{Chapter2/figs/}}
 
 This chapter focuses on describing some advances in the context of Interactive ML and Interpretable ML. In first instance, both sub-fields are tackled independently but, in Section \ref{section2.3}, a discussion is stated in terms of how they can be combined for designing better and more user-centric ML systems.
 
-%********************************** %First Section  **************************************
-\section{Interactive ML} %Section - 2.1 
+\section{Interactive ML}
 \label{section2.1}
 
 The Human-Computer Interaction (HCI) field cares about human perception, cognition, intelligence, decision-making and interactive techniques of visualization. By the other hand, in Knowledge Discovery in Databases (KDD) automatic computational methods for finding previously unknown relationships in data are developed \cite{Holzinger2013}. By merging these fields, many research opportunities emerge including the paradigm where algorithms can interact with humans and optimize their learning behavior through these interactions \cite{Holzinger2016}. 
@@ -40,7 +39,7 @@ Next subsections describe some related concepts to tackle the Interactive ML des
 \subsection{Dimensionality Reduction (DR)}
 \label{subsection2.1.1}
 
-In general terms, DR deals with the problem of finding meaningful low-dimensional structures (compact representation) from high-dimensional data \cite{Tenenbaum2000},\cite{Roweis2000}. For \textbf{sample review}, this is a valuable technique for representing high-dimensional data in principally two dimensions to validate the data distribution. Some algorithms for DR are Principal Component Analysis (PCA) \cite{PCA}, Self-Organized Maps (SOM) \cite{Kohonen1982Self-organizedMaps}, t-Stochastic Neighborhood Embedding (t-SNE) \cite{VanDerMaaten2008}, and Uniform Manifold Approximation and Projection (UMAP) \cite{McInnes2018}.
+In general terms, DR deals with the problem of finding meaningful low-dimensional structures (compact representation) from high-dimensional data \cite{Tenenbaum2000},\cite{Roweis2000}. For \textbf{sample review}, this is a valuable technique for representing high-dimensional data in principally two dimensions to validate the data distribution. Some algorithms for DR are Principal Component Analysis (PCA) \cite{PCA}, Self-Organized Maps (SOM) \cite{Kohonen1982Self-organizedMaps}, Isometric Mapping (ISOMAP) \cite{Tenenbaum2000}, t-Stochastic Neighborhood Embedding (t-SNE) \cite{VanDerMaaten2008}, and Uniform Manifold Approximation and Projection (UMAP) \cite{McInnes2018}.
 
 DR can be used to achieve cluster-oriented task sequences such as verify clusters, name clusters and match cluster and classes \cite{Brehmer2014VisualizingSequences}. In this sense, DR and Clustering algorithms have been successfully combined for assist analysts in performing this kind of user tasks \cite{Wenskovitch2018}. Nevertheless, many challenges and opportunities need to be addressed. In addition, it is important to note that DR and Clustering algorithms are not only relevant for providing \textbf{sample review} as stated in \cite{Wenskovitch2017}, where a \textbf{feedback assignment} mechanism based on observation-level interaction is enabled for improving the cluster computation in an iterative way. 
 
@@ -69,8 +68,7 @@ An example of Interactive ML system for error discovery is presented in \cite{Ch
 % Learning by user knowledge
 It is also important to highlight some works focused on implement systems that learn explicitly from user knowledge and not refining an specific algorithm proposed in literature. In \cite{Brown2012}, users are able to build the distance function for two dimensions data projection according to their own sense of distance. In addition, a tool for clustering steered by user, having significantly higher quality than those from a pure algorithmic process, in proposed in \cite{Chang2016}.
 
-%********************************** %Second Section  **************************************
-\section{Interpretable ML} %Section - 2.2 
+\section{Interpretable ML}
 \label{section2.2}
 
 Interpretability is defined as the ability to explain or to present in understandable terms to a human \cite{Doshi-Velez2017c}. This definition by itself leaves more questions open than it solves and the decision behind delivering ML interpretability to users must be careful studied. Figure \ref{fig:interpretableML}, presents a condensed synthesis regarding to design aspects for delivering interpretability which are highly related to context, users, data and models \cite{Hohman2018},\cite{Doshi-Velez2017c},\cite{Lipton2017}. These aspects are grouped in six questions to be asked during the design process:
@@ -101,8 +99,7 @@ A more sophisticated technique is LIME \cite{Ribeiro2016}, Local Interpretable M
 
 Black-box Deep Learning models have the disadvantage of being the least interpretable because their large number of parameters as measure of complexity. Contributions in this field have been achieved by producing interpretation of the features learned at each layer of a Neural Network \cite{Yosinski2015a},\cite{Olah2018}. A more extensive literature review about interpretability in Deep Learning can be found in \cite{Zhang2018}.
 
-%********************************** %Third Section  **************************************
-\section{The link between both worlds} %Section - 2.3
+\section{The link between both worlds}
 \label{section2.3}
 
 Interactive ML and Interpretable ML in the most of cases previously described has been tackled as isolated concepts. In some scenarios, mechanisms for \textbf{sample review} and \textbf{feedback assignment} (e.g. labeling or parameter tuning) may not be enough to successfully fulfill the user task. \textbf{Model inspection} implies opening the black-box and presenting it to user in an interpretable way and model interpretation indicates the ability to provide explanations about their inner working which could help users to better understand their results \cite{Doshi-Velez2017c}. This extension could support the \textbf{task overview} interface element because, as stated in \cite{Doshi-Velez2017c}, \cite{Lipton2017}, model interpretation is used to achieve other important requirements in user-centric ML systems such as trust, unbiasedness, privacy, reliability, robustness, causality, transferability, informativeness and usability.
