@@ -1,14 +1,10 @@
-%!TEX root = ../thesis.tex
-%*******************************************************************************
-%****************************** Second Chapter *********************************
-%*******************************************************************************
 
 \chapter{Designing User-Centric ML Systems}
 \label{chapter2}
 
 \graphicspath{{Chapter2/figs/}}
 
-This chapter focuses on describing some advances in the context of Interactive ML and Interpretable ML. In first instance, both sub-fields are tackled independently but, in Section \ref{section2.3}, a discussion is stated in terms of how they can be combined for designing better and more user-centric ML systems.
+This chapter focuses on describing some advances in the context of Interactive ML and Interpretable ML. In first instance, both sub-fields are tackled independently but, in Section \ref{section2.3}, a discussion is stated in terms of how they can be combined for designing better and more user-centric ML systems. Finally, some related proposals in the context of DR and Clustering are presented in Section \ref{section2.4}.
 
 \section{Interactive ML}
 \label{section2.1}
@@ -39,11 +35,11 @@ Next subsections describe some related concepts to tackle the Interactive ML des
 \subsection{Dimensionality Reduction (DR)}
 \label{subsection2.1.1}
 
-In general terms, DR deals with the problem of finding meaningful low-dimensional structures (compact representation) from high-dimensional data \cite{Tenenbaum2000},\cite{Roweis2000}. For \textbf{sample review}, this is a valuable technique for representing high-dimensional data in principally two dimensions to validate the data distribution. Some algorithms for DR are Principal Component Analysis (PCA) \cite{PCA}, Self-Organized Maps (SOM) \cite{Kohonen1982Self-organizedMaps}, Isometric Mapping (ISOMAP) \cite{Tenenbaum2000}, t-Stochastic Neighborhood Embedding (t-SNE) \cite{VanDerMaaten2008}, and Uniform Manifold Approximation and Projection (UMAP) \cite{McInnes2018}.
+In general terms, DR deals with the problem of finding meaningful low-dimensional structures (compact representation) from high-dimensional data \cite{Tenenbaum2000},\cite{Roweis2000}. For \textbf{sample review}, this is a valuable technique for representing high-dimensional data in principally two dimensions to validate the data distribution. Some algorithms for DR are Principal Component Analysis (PCA) \cite{PCA}, Self-Organized Maps (SOM) \cite{Kohonen1982Self-organizedMaps}, Isometric Mapping (ISOMAP) \cite{Tenenbaum2000}, t-Stochastic Neighborhood Embedding (t-SNE) \cite{VanDerMaaten2008}, and Uniform Manifold Approximation and Projection (UMAP) \cite{McInnes2018}. In general terms, many of the algorithms require a distance function (e.g. Euclidean distance) as method for calculating the similarity between pairs of instances \cite{Wenskovitch2018}, have their own training mechanism, may be sensible to random initialization at different levels and the selection of the hyper-parameters could satisfy diverse user intentions according to the domain of the problem.
+
+PCA is a linear transformation algorithm that produce new uncorrelated dimensions (principal components) looking to maximize the variability represented in the dataset. SOM comes from the family of neural networks and use competitive learning to build a discrete representation of the data. ISOMAP is one of the first algorithms based on manifold learning and produces a low-dimensional embedding maintaining the geodesic distance between all instances causing preservation of global structures. Unlike ISOMAP, t-SNE retains particularly local structure but also some of global structure of the data. In many scenarios, t-SNE enables more the visual identification of clusters in comparison with ISOMAP but have the disadvantage of being expensive in  memory and processing and producing different embeddings with random initializations. UMAP is the newest technique and can compete with t-SNE for visualization but with superior run time performance.
 
 DR can be used to achieve cluster-oriented task sequences such as verify clusters, name clusters and match cluster and classes \cite{Brehmer2014VisualizingSequences}. In this sense, DR and Clustering algorithms have been successfully combined for assist analysts in performing this kind of user tasks \cite{Wenskovitch2018}. Nevertheless, many challenges and opportunities need to be addressed. In addition, it is important to note that DR and Clustering algorithms are not only relevant for providing \textbf{sample review} as stated in \cite{Wenskovitch2017}, where a \textbf{feedback assignment} mechanism based on observation-level interaction is enabled for improving the cluster computation in an iterative way. 
-
-Since using DR and Clustering algorithms for interactive EDA is the main focus of this work, this subsection is extended and better contextualized in Chapter \ref{chapter3}. 
 
 \subsection{Active Learning and Visual Interactive Labeling}
 \label{subsection2.1.2}
@@ -60,13 +56,13 @@ In \cite{Bernard2018b}, authors present a comparison among multiple VIL and AL s
 Two useful strategies for \textbf{feedback assignment} and \textbf{model inspection} to be included into an Interactive ML system are parameter tuning and error discovery. 
 
 % Parameter tuning
-For the first strategy, the adjustment of model parameters does not imply necessarily, for instance, to provide the ability to modify the number of hidden layers or link weights, in the context of neural networks. The goal is to design interaction mechanisms usable for users even when these are not experts in ML. In other words, putting model parameters in terms of the task domain, being this a non-trivial design decision. An example is shown in \cite{Kapoor2010}, where users are able to refine the parameters of the confusion matrix according to their preferences and thus re-train the model in an iterative way. For clustering, user actions affecting implicitly the model parameters include dragging points to form one or more new clusters, dragging an outlier into existing cluster, maximize one dimension weight and drag multiple sliders to equally large weights \cite{Self2016}. 
+For the first strategy, the adjustment of model parameters does not imply necessarily, for instance, to provide the ability to modify the number of hidden layers or link weights, as in the context of neural networks. The goal is to design interaction mechanisms usable for users even when these are not experts in ML. In other words, putting model parameters in terms of the task domain, being this a non-trivial design decision. An example is shown in \cite{Kapoor2010}, where users are able to refine the parameters of the confusion matrix according to their preferences and thus re-train the model in an iterative way. For clustering, user actions affecting implicitly the model parameters include dragging points to form one or more new clusters, dragging an outlier into existing cluster, maximize one dimension weight and drag multiple sliders to equally large weights \cite{Self2016}. 
 
 % error discovery
 An example of Interactive ML system for error discovery is presented in \cite{Chen2018b}. From a website classification problem, domain knowledge about the target class is introduced facilitating error discovery through semantic data exploration. While elements such as \textbf{sample review} and \textbf{model inspection} are introduced, an eventual desire of Interactive ML systems is missing: the ability to perform labeling correction and re-train the model to evaluate if performance improves.
 
 % Learning by user knowledge
-It is also important to highlight some works focused on implement systems that learn explicitly from user knowledge and not refining an specific algorithm proposed in literature. In \cite{Brown2012}, users are able to build the distance function for two dimensions data projection according to their own sense of distance. In addition, a tool for clustering steered by user, having significantly higher quality than those from a pure algorithmic process, in proposed in \cite{Chang2016}.
+It is also important to highlight some works focused on implement systems that learn explicitly from user knowledge and not refining an specific algorithm proposed in literature. In \cite{Brown2012}, users are able to build the distance function for two dimensions data projection according to their own sense of distance. In SIRIUS \cite{Dowling2018SIRIUS:Reductions}, coordinated dragging of instances and attributes in 2D panels offer a visual intuition about similarity-based relationships between them. In addition, a tool for clustering steered by user, having significantly higher quality than those from a pure algorithmic process, in proposed in \cite{Chang2016}.
 
 \section{Interpretable ML}
 \label{section2.2}
@@ -91,6 +87,8 @@ Interpretability is defined as the ability to explain or to present in understan
 
 Delivering interpretability implies opening the black-box and sometimes it could not be necessary and appropriate to do it, principally when there are no significant consequences for unacceptable results or the problem is sufficiently well-studied and validated in real applications that user trust the system’s decision, even if this is not perfect \cite{Doshi-Velez2017c}.
 
+An example of interpretability in the DR context is DimReader \cite{Faust2019DimReader:Projections}. Building new axes representing infinitesimal perturbations in the embedding, this technique can be used to determine the regions where instances with similar range of values for a particular attribute are concentrated and the direction of the change.     
+
 \subsection{Frameworks for Interpretability}
 
 Some relatively basic techniques for interpret ML models are \cite{Becker2018MachineExplainability}: Permutation importance, for determining which attribute produces the highest performance decrease, and Partial dependence plots, for visualizing influence direction and shape when varying an attribute value.
@@ -99,9 +97,51 @@ A more sophisticated technique is LIME \cite{Ribeiro2016}, Local Interpretable M
 
 Black-box Deep Learning models have the disadvantage of being the least interpretable because their large number of parameters as measure of complexity. Contributions in this field have been achieved by producing interpretation of the features learned at each layer of a Neural Network \cite{Yosinski2015a},\cite{Olah2018}. A more extensive literature review about interpretability in Deep Learning can be found in \cite{Zhang2018}.
 
-\section{The link between both worlds}
+\section{The Link Between Both Worlds}
 \label{section2.3}
 
 Interactive ML and Interpretable ML in the most of cases previously described has been tackled as isolated concepts. In some scenarios, mechanisms for \textbf{sample review} and \textbf{feedback assignment} (e.g. labeling or parameter tuning) may not be enough to successfully fulfill the user task. \textbf{Model inspection} implies opening the black-box and presenting it to user in an interpretable way and model interpretation indicates the ability to provide explanations about their inner working which could help users to better understand their results \cite{Doshi-Velez2017c}. This extension could support the \textbf{task overview} interface element because, as stated in \cite{Doshi-Velez2017c}, \cite{Lipton2017}, model interpretation is used to achieve other important requirements in user-centric ML systems such as trust, unbiasedness, privacy, reliability, robustness, causality, transferability, informativeness and usability.
 
-In other words, \textbf{an Interactive ML system is not necessarily interpretable in terms of what model is learning and, in the opposite case, an Interpretable ML system could not involve all enough elements of interaction to perform the task in an usable and efficient way}. Designers must not forget the system is constrained by an user task and users are the ones who have the power to determine if the task was effectively fulfilled. User evaluation for interactivity and interpretability, as in any HCI study, must be considered.
+In other words, \textbf{an Interactive ML system is not necessarily interpretable in terms of what model is learning and, in the opposite case, an Interpretable ML system could not involve all enough elements of interaction to perform the task in an usable and efficient way}. Designers must not forget the system is constrained by an user task and users are the ones who have the power to determine if the task is effectively fulfilled. User evaluation for interactivity and interpretability, as in any HCI study, must be considered.
+
+%After establishing the bases for designing user-centric ML systems, some DR and Clustering algorithms are presented from a practical perspective. This chapter is not focused in determining the best algorithm for reducing or clustering data but discussing about how these behave for some real-world datasets. The third section of this chapter concentrates in summarize some tools that use this kind of algorithms while user can interact and interpret them.
+
+%Figure \ref{fig:dr-matrix} shows some experiments performed for 4 datasets with different level of complexities using 4 of the DR algorithms previously described: the Iris dataset, the Breast Cancer dataset, the FIFA dataset and the SALURBAL dataset. A class attribute is used for color encoding: species, diagnosis, position and sub-city type, respectively. Hyper-parameter tuning is not considered, the most important aspect to evaluate is the ability of the algorithms to build embeddings with visually identifiable clusters. For the first dataset, all algorithms seem to work similar separating one of the three classes and reflecting no linear separability of the remaining classes.
+
+%\begin{figure}[ht]
+% \centering
+% \includegraphics[width=1.0\textwidth]{DRmatrix.png}
+% \caption{DR embeddings for 4 datasets: the Iris dataset, the Breast Cancer dataset, the FIFA dataset and the SALURBAL dataset.}
+% \label{fig:dr-matrix}
+%\end{figure}
+
+%As appreciate, PCA and ISOMAP tend to overlap the classes making difficult for user to   
+
+%\section{Clustering Data}
+%\label{section2.5}
+
+%K-Means
+%Spectral
+%Agglomerative
+%DBSCAN
+
+\section{EDA Tools for Interacting and Interpreting DR and Clustering}
+\label{section2.4}
+
+Many researchers have proposed to integrate ML in systems or tools for analyzing data. In \cite{Endert2017b}, a wide range of works are presented and some challenges and opportunities are presented including: (1) incorporation of user feedback, (2) balance human and machine efforts, responsibility and tasks, (3) control of system complexity, (4) visualization of intermediate results, and (5) interpretability. In the context of DR and Clustering, \cite{Wenskovitch2018} and \cite{Sacha2017g} derive from literature review the user tasks and interaction mechanisms incorporated in this kind of systems:
+
+\begin{itemize}
+\item DR: See distribution of instances, identify clusters, rotate the embedding, reposition instances, measure distances between instances, change distance metric, select different attributes, modify the weight of an attribute, obtain attribute values and select the algorithm and modify its hyper-parameters.
+\item Clustering: Determine cluster structure, label / annotate clusters, merge or split clusters, reposition instances, select different attributes, modify the weight of an attribute, obtain attribute values and select the algorithm and modify its hyper-parameters.
+\end{itemize}
+
+To the best of our knowledge, a first effort of interactive tool for DR and Clustering is Divvy \cite{Lewis2013Divvy:Analysis}. In Divvy, user is able to load a dataset and evidence its shape, train some DR and Clustering models changing the hyper-parameters and visualize the results in multiple embeddings. In this standalone tool, no other interaction mechanism is considered. Embedding Projector \cite{Smilkov2016EmbeddingEmbeddings} is a web tool from the Tensorflow \cite{Abadi2016TensorFlow:Learning} ecosystem and it enables additional interactions for embeddings including zooming, rotation, panning, query for getting attribute values and nearest-neighbors. Three DR algorithms are implemented in Embedding Projector (PCA, t-SNE and a linear projection of any two custom vectors) but experimentation is limited to 5 pre-loaded datasets. A-tSNE \cite{Pezzotti2016ApproximatedAnalytics} is a complementary tool mainly focused on fast execution of the t-SNE algorithm for progressive analytics. In a first stage, the tool builds an approximated embedding to subsequently refine the approximation in areas of interest for the user. Figure \ref{fig:interactiveDR} shows screenshoots of the works previously mentioned. Other improvement of t-SNE is proposed in \cite{Pezzotti2018LinearWeb}. In this case, Tensorflow.js \cite{Smilkov2019TensorFlow.js:Beyond} is extended with this DR algorithm for execution in the browser taking advantage of the tensor data structures and WebGL textures for fast execution.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.9\textwidth]{InteractiveDR.png}
+ \caption{Divvy \cite{Lewis2013Divvy:Analysis} (top left), Embedding Projector \cite{Smilkov2016EmbeddingEmbeddings} (top right) and A-tSNE \cite{Pezzotti2016ApproximatedAnalytics} (bottom) for interactive DR and Clustering.}
+ \label{fig:interactiveDR}
+\end{figure}
+
+These proposals inspire the development of the tool explained in Chapter \ref{chapter3}. The main improvement with respect to these tools is the ability for domain-expert users to train DR and Clustering models for supporting clustering-oriented EDA tasks without losing the overall context of the data in the same interactive tool. This context of the data is also used as an initial mechanism for providing interpretability for the available models.

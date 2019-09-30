@@ -1,18 +1,17 @@
-%!TEX root = ../thesis.tex
-%*******************************************************************************
-%****************************** Fifth Chapter **********************************
-%*******************************************************************************
-\chapter{Case Studies}
+
+\chapter{Conclusions}
 \label{chapter5}
 
-\graphicspath{{Chapter5/figs/}}
+Performing EDA for high-dimensional data by traditional statistical and VA techniques implicate a great effort from user to extract insights among all attributes at once, principally when context of the data is not widely known for deriving only the most meaningful attributes for understanding a real-world phenomenon. ML can support this process by, for instance, identifying groups or clusters of similar data instances and enabling user to focus the analysis where there is a main interest. DR and Clustering unsupervised algorithms are used to achieve this goal but having some problems related to lack of user feedback and interpretation.
 
-%********************************** %First Section  **************************************
-\section{The FIFA case study} %Section - 5.1 
-\label{section5.1}
+Interactive ML and Interpretable ML are two sub-fields of relatively new interest intended to build user-centric ML systems. The main challenge of these sub-fields is determine the elements that need to be included in a system for maximizing the collaboration between a user and a ML model for more effectively fulfilling a real-world task. Some related concepts and principles have already been established being necessary to apply them in a more wide range of problems. In addition, an opportunity for combining these currently independent sub-fields is sighted.
 
+In the context of DR and Clustering, a great variety of algorithms have been proposed having different learning strategies and implications for results understanding. As expected, some algorithms have had a particular interest, for instance, t-SNE for producing embeddings that enable the visual identification of clusters and K-Means for maintaining a good performance in contrast with its simplicity. Some systems for interacting and interpreting these algorithms have been proposed and, although presenting limitations, common interaction mechanism and interpretability strategies are derived.
 
+The main contribution of this work is focused on developing MLExplore.js, a web interactive tool enabling domain-expert users for performing EDA in terms of cluster-oriented DR task sequences as verify clusters, name clusters and match cluster and classes. Two models are currently available in MLExplore.js: t-SNE and K-Means. Using model computation in the browser, users are able to explore the hyper-parameters space and visually validate the results in terms of the data. Complementary, the interface provides mechanisms for data navigation, attribute selection and export results. Integrating all of these components comprises an step forward with respect to the current proposals from the state of the art. 
 
-%********************************** %Second Section  **************************************
-\section{The SALURBAL case study} %Section - 5.2 
-\label{section5.2}
+One real-world high-dimensional dataset is used to demonstrate the usefulness of MLExplore.js, the SALURBAL datasets. This datasets have around 80 attributes and 1.433 data instances. During the experimentation, the algorithms running in the browser present relatively good run-time performance as well as the user interactions with all the interface components. The EDA process followed is based in the model comparison when including different sets of attributes related to sub-cities attribute domains such as Street Design or Urban Landscape. The SALURBAL researchers provide Finitie Mixture Models profile memberships for the sub-cities for both domains, these categorical attributes are used for color encoding looking to find a set of t-SNE hyper-parameters that best visualizes the clusters and enables the naming of them in terms of the original attributes.
+
+%For the FIFA dataset, the use case is focused on excluding the goalkeepers from the training data and comparing the model results with models with all players.
+
+As future work, MLExplore.js can be extended for (1) supporting multiple dataset formats like JSON or excel, (2) including complementary idioms for dataset overview, (3) performing a more informed a priori attribute selection by, for instance, showing correlation metrics, (4) steering the hyper-parameter space exploration by better integrating the current nearest neighbors calculation, (5) highlighting attributes that maximize desired properties like class or cluster separability and (6) enabling more algorithms for experimentation. For larger datasets, computation in the browser can be very expensive, optimizing the model training on top on Tensorflow.js to take advantage of the WebGL standard continues being an great opportunity for delivering a tool that can be used for domain-expert users with more advanced requirements.
