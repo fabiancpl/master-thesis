@@ -9,9 +9,7 @@
 *   [John A. Guerra](http://johnguerra.co/)
 *   José T. Hernandez
 
-Universidad de los Andes
-Bogota, Colombia
-2019
+Universidad de los Andes, Bogota, Colombia, 2019
 
 #### Template based on
 *   Cambridge Computer Laboratory PhD Thesis Template [https://github.com/cambridge/thesis](https://github.com/cambridge/thesis)
