@@ -3,10 +3,10 @@
 ## Master thesis
 
 ### Author
-*   Fabian C. Peña
+*   [Fabian C. Peña](https://fabiancpl.github.io/)
 
 ### Advisors
-*   John A. Guerra
+*   [John A. Guerra](http://johnguerra.co/)
 *   José T. Hernandez
 
 Universidad de los Andes
